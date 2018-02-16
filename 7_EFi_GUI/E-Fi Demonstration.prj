@@ -1,0 +1,117 @@
+<deployment-project plugin="plugin.apptool" plugin-version="1.0">
+  <configuration build-checksum="2152478595" file="\\fs-58-ah\vmgr$\home08\paulli\Documents\MATLAB\EFi_GUI\E-Fi Demonstration.prj" location="\\fs-58-ah\vmgr$\home08\paulli\Documents\MATLAB\EFi_GUI" name="E-Fi Demonstration" target="target.mlapps" target-name="Package App">
+    <param.appname>E-Fi Demonstration</param.appname>
+    <param.authnamewatermark>Carlos Bocanegra; Zhengnan Li</param.authnamewatermark>
+    <param.email />
+    <param.company>Northeastern University</param.company>
+    <param.icon />
+    <param.icons />
+    <param.summary />
+    <param.description />
+    <param.screenshot />
+    <param.version>1.1</param.version>
+    <param.products.name>
+      <item>MATLAB</item>
+      <item>LTE System Toolbox</item>
+      <item>WLAN System Toolbox</item>
+    </param.products.name>
+    <param.products.id>
+      <item>1</item>
+      <item>140</item>
+      <item>145</item>
+    </param.products.id>
+    <param.products.version>
+      <item>9.2</item>
+      <item>2.4</item>
+      <item>1.3</item>
+    </param.products.version>
+    <param.platforms />
+    <param.output>C:\Users</param.output>
+    <param.guid>d8e6fd2d-2411-4c25-8b6e-0567d1c17d9b</param.guid>
+    <unset>
+      <param.email />
+      <param.icon />
+      <param.icons />
+      <param.summary />
+      <param.description />
+      <param.screenshot />
+      <param.platforms />
+    </unset>
+    <fileset.main>
+      <file>${PROJECT_ROOT}\EFiSketch.mlapp</file>
+    </fileset.main>
+    <fileset.depfun>
+      <file>${PROJECT_ROOT}\coex_power.m</file>
+      <file>${PROJECT_ROOT}\coex_sig_add.m</file>
+      <file>${PROJECT_ROOT}\lte_channel.m</file>
+      <file>${PROJECT_ROOT}\lte_config.m</file>
+      <file>${PROJECT_ROOT}\lte_report.m</file>
+      <file>${PROJECT_ROOT}\lte_rx.m</file>
+      <file>${PROJECT_ROOT}\lte_tx.m</file>
+      <file>${PROJECT_ROOT}\LTE_WiFi_TxChRx.m</file>
+      <file>${PROJECT_ROOT}\munkres.m</file>
+      <file>${PROJECT_ROOT}\wiFi_channel.m</file>
+      <file>${PROJECT_ROOT}\wifi_config.m</file>
+      <file>${PROJECT_ROOT}\wiFi_report.m</file>
+      <file>${PROJECT_ROOT}\wiFi_rx.m</file>
+      <file>${PROJECT_ROOT}\wifi_slength.m</file>
+      <file>${PROJECT_ROOT}\wiFi_tx.m</file>
+    </fileset.depfun>
+    <fileset.resources />
+    <fileset.package />
+    <build-deliverables>
+      <file location="C:\" name="Users" optional="false">C:\Users</file>
+    </build-deliverables>
+    <workflow />
+    <matlab>
+      <root>C:\Program Files\MATLAB\R2017a</root>
+      <toolboxes>
+        <toolbox name="fixedpoint" />
+        <toolbox name="matlabcoder" />
+        <toolbox name="matlabhdlcoder" />
+        <toolbox name="embeddedcoder" />
+        <toolbox name="polyspacebugfinder" />
+      </toolboxes>
+      <toolbox>
+        <fixedpoint>
+          <enabled>true</enabled>
+        </fixedpoint>
+      </toolbox>
+      <toolbox>
+        <matlabcoder>
+          <enabled>true</enabled>
+        </matlabcoder>
+      </toolbox>
+      <toolbox>
+        <matlabhdlcoder>
+          <enabled>true</enabled>
+        </matlabhdlcoder>
+      </toolbox>
+      <toolbox>
+        <embeddedcoder>
+          <enabled>true</enabled>
+        </embeddedcoder>
+      </toolbox>
+      <toolbox>
+        <polyspacebugfinder>
+          <enabled>true</enabled>
+        </polyspacebugfinder>
+      </toolbox>
+    </matlab>
+    <platform>
+      <unix>false</unix>
+      <mac>false</mac>
+      <windows>true</windows>
+      <win2k>false</win2k>
+      <winxp>false</winxp>
+      <vista>false</vista>
+      <linux>false</linux>
+      <solaris>false</solaris>
+      <osver>6.2</osver>
+      <os32>false</os32>
+      <os64>true</os64>
+      <arch>win64</arch>
+      <matlab>true</matlab>
+    </platform>
+  </configuration>
+</deployment-project>
