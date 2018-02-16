@@ -20,34 +20,34 @@ In addition, */Configuration_MAC.m* and */Configuration_PHY.m* are the configura
 
 **NOTE**: *For the correct execution of the code, ensure you are running it on version R2016a or later with the LTE System Toolbox, WLAN System toolbox and Parallel Toolbox. The later one can be deactivated in the code, though it would increase the execution time.*
 
-### 1. Create TABLE_PER_ABS0/1 (/1_TABLE_PHY):
-The code uses the LTE and WLAN System toolboxes to perform the mapping PSR - <Prx,SINR> (PSR_TABLE). This information is supposed to be known by every Wi-Fi device once E-fi starts operating. The output of the code is a 3D Table, where each combination of received power and SINR map to a PSR value. The code to characterize the PSR is:
+### 1. Create PHY Table
+The code is under */1_TABLE_PHY* directory and uses the LTE and WLAN System toolboxes to perform the mapping PSR - <Prx,SINR> (PSR_TABLE). This information is supposed to be known by every Wi-Fi device once E-fi starts operating. The output of the code is a 3D Table, where each combination of received power and SINR map to a PSR value. The code to characterize the PSR is:
 
 - **LTE_WiFi_TXChRx_Runnable.m**: This is the main script. It contains the LTE and Wi-Fi configurations (tunable) and generates the testing grid by iterating over different values of AP- BS distances and node location. For each of this values, the script calls *LTE_WiFi_TXChRx.m*, which returns metrics on the Wi-Fi and LTE performance.
 - **LTE_WiFi_TXChRx.m**: This code evaluates the throughput, BER and Frame Detection Errors for LTE and Wi-Fi standard when coexisting using Almost Blank Subframes (ABS). Wi-Fi transmissions are always scheduled in ABS, in which LTE only transmits Control Signal. LTE Data is scheduled in non-ABS. The performance is evaluated only at a specified location (distance from the BS and AP).
 
-### 2. Create TABLE_NEW_MAC (/2_TABLE_MAC):
-The code reuses the work in [1] as a baseline to model the MAC procedure using a state machine. The input of the function is the PSR_TABLE and it provides the probability of dropping a packet, the number of attempts to transmit a packet and the average time to transmit. The later, combined with the length of the PSDU gives us an estimation of the throughput. 
+### 2. Create MAC Table
+The code is under */2_TABLE_MAC* directory and takes [1] as a baseline to model the MAC procedure using a state machine. The input of the function is the PSR_TABLE (generated in */1_TABLE_PHY*) and it provides the probability of dropping a packet, the number of attempts to transmit a packet and the average time to transmit. The later, combined with the length of the PSDU gives us an estimation of the throughput. The output is defined as TABLE_MAC and is used in most of the further experiments to compute the Throughput accounting for retrasnmissions following the DCF (Distributed Cordination Function) present in the 802.11 standards family.
 
-- **CreateTableMAC.m**: Main executable. The code runs for several values of *PSDU Length* and *alpha*. *Alpha* is a parameter that modifies the contention window in E-Fi to allow for an evenly distributed channel access between AP's and Relays (e.g. Alpha equals to 0 gives Relays more chances to access the channel than the AP to forward packets to Wi-Fi Direct Clients). *PSDU Length* represents the length in bits of the PSDU field in a packet.
+- **CreateTableMAC.m**: Main executable. The code runs for several values of *PSDU Length* and *alpha*. *Alpha* is a parameter that modifies the contention window in E-Fi to allow for an evenly distributed channel access between AP's and Relays (e.g. Alpha equals to 0 gives Relays more chances to access the channel than the AP to forward packets to Wi-Fi Direct Clients). *PSDU Length* represents the length in bits of the PSDU field in a packet. 
 
-### 3. Throughput Experiment (/3_EXPERIMENT_THROUGHPUT):
-The simulation set generates part of the TABLE_NEW_MAC and shows the results. Although not necessary for E-Fi performance evaluation, it serves as a good visualization of the table creation mechanism.
+### 3. Throughput Experiment
+The simulation set is under */3_EXPERIMENT_THROUGHPUT* directory and generates part of the TABLE_NEW_MAC and shows the results. Although not necessary for E-Fi performance evaluation, it serves as a good visualization of the table creation mechanism.
 
 - **ThroughputExp.m**: Main executable. This code is a particularization of **CreateTableMAC.m** (in /2_TABLE_MAC). The code evaluates the Throughput for a range of values of either *PSDU Length* or *alpha*, keeping the other parameter to a fixed value throughout the simulation.
 
-### 4. Node Categorization Experiment (/4_EXPERIMENT_NODE_CATEGORY):
-The simulation set helps to understand how nodes are statistically categorized as Group Owners/Relays (GO), Wi-Fi Direct Clients (WDC) or Clients (CSZ and CNSZ) in the X-Y plane (spatial categorization based on the total number of available nodes in the area). 
+### 4. Node Categorization Experiment
+The simulation set is under */4_EXPERIMENT_NODE_CATEGORY* and helps to understand how nodes are statistically categorized as Group Owners/Relays (GO), Wi-Fi Direct Clients (WDC) or Clients (CSZ and CNSZ) in the X-Y plane (spatial categorization based on the total number of available nodes in the area). 
 
 - **NodeCategorization.m**: Main executable. The Wi-Fi nodes are located randomly within the coverage area. The code runs over a large number of iterations to ensure we cover most locations and we obtain meaningful results (200 or more iterations are recommended). The output shows (1) the node characterization and (2) the PSR improvement for the Wi-Fi Direct Clients by employing E-Fi.
 
-### 5. Feasible Region Experiment (/5_EXPERIMENT_FEASIBLE_REGION):
-The simulation set shows how the quality of the communications between the AP and the Wi-Fi Direct Client (PSR between Ap and WDC), the GO and the WDC (PSR between GO and WDC) and the AP and the GO (PSR between AP and GO) impact on the candidacy analysis and final node grouping in E-Fi. 
+### 5. Feasible Region Experiment
+The simulation set is under */5_EXPERIMENT_FEASIBLE_REGION* and shows how the quality of the communications between the AP and the Wi-Fi Direct Client (PSR between Ap and WDC), the GO and the WDC (PSR between GO and WDC) and the AP and the GO (PSR between AP and GO) impact on the candidacy analysis and final node grouping in E-Fi. 
 
 - **FeasibleRegion.m**: Main executable. The code will run for several iterations, select the combinations (PSR between Ap and WDC) that meet the initial number of transmission (within certain margins of tolerance) and compare them with the ones E-Fi provides. The 2D output helps to understand the distribution and final categorization. The 3D output also show the estimation of the Throughput for the selected PSR configurations. To that end, a list of initial number of transmissions for success needs to be defined. This can be seen as a list of 1/(PSR between Ap and WDC), since this is the initial quality of the link without E-Fi.
 
-### 6. Global Experiment (/6_EXPERIMENT_GENERAL_STATS):
-The simulation set generates an extensive analysis on the performance of E-Fi in terms of PSR and Throughput as a function of the Number of Nodes (Nnodes), the PSR Threshold (PERth, defining the Safe Zone in E-Fi, or PSRth, being PSRth = 1 - PERth), the BS location (BSloc, distance between AP and BS) and Alpha (modifies the contention window in E-Fi). 
+### 6. Global Experiment
+The simulation set is under */6_EXPERIMENT_GENERAL_STATS* and generates an extensive analysis on the performance of E-Fi in terms of PSR and Throughput as a function of the Number of Nodes (Nnodes), the PSR Threshold (PERth, defining the Safe Zone in E-Fi, or PSRth, being PSRth = 1 - PERth), the BS location (BSloc, distance between AP and BS) and Alpha (modifies the contention window in E-Fi). 
 
 - **GeneralStats.m**: Main executable. The parameter “exp” within the executable *GeneralStats.m* controls the parameter to evaluate in the experiment and can be set to: 'Nnodes', 'PERth', 'PSRth', 'BSloc' or 'Alpha’. This is the most important experiment set in E-Fi.
 
@@ -71,7 +71,7 @@ li.zhengn@husky.neu.edu
 
 This work is supported in part by MathWorks under the Development-Collaboration Research Grant and by the U.S. Office of Naval Research under grant number N00014-16-1-2651. We would like to thank Mike McLernon, Ethem Sozer, Rameez Ahmed and Kunal Sankhe for their continued support and guidance on this project.
 
-### References:
+### References
 
 [1] R. Subramanian, B. Drozdenko, E. Doyle, R. Ahmed, M. Leeser and K. R. Chowdhury, "High-Level System Design of IEEE 802.11b Standard-Compliant Link Layer for MATLAB-Based SDR," in IEEE Access, vol. 4, no. , pp. 1494-1509, 2016.
 Code:  https://github.com/80211bSDR. 
