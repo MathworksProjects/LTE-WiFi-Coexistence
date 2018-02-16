@@ -55,17 +55,23 @@ The simulation set is under */6_EXPERIMENT_GENERAL_STATS* and generates an exten
 
 For more information about the code or E-Fi, please don't hesitate to contact us by email. We'll be happy to assist you and answer any question you may have.
 
-Carlos Bocanegra Guerra
-PhD Candidate
-Electrical and Computer Engineering (EECE)
-Northeastern University
+Carlos Bocanegra Guerra  
+PhD Candidate  
+Electrical and Computer Engineering (EECE)  
+Northeastern University  
 bocanegrac@coe.neu.edu
 
-Zhengnan Li
-Master of Science candidate
-Electrical and Computer Engineering (EECE)
-Northeastern University
-li.zhengn@husky.neu.edu
+Zhengnan Li  
+Master of Science candidate  
+Electrical and Computer Engineering (EECE)  
+Northeastern University  
+li.zhengn@husky.neu.edu  
+
+Kaushik R. Chowdhury  
+Associate Professor  
+Electrical and Computer Engineering (EECE)  
+Northeastern University  
+krc@ece.neu.edu
 
 ## Acknowledgements
 
