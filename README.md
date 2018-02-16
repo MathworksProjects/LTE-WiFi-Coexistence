@@ -51,7 +51,7 @@ The simulation set is under */6_EXPERIMENT_GENERAL_STATS* and generates an exten
 
 - **GeneralStats.m**: Main executable. The parameter “exp” within the executable *GeneralStats.m* controls the parameter to evaluate in the experiment and can be set to: 'Nnodes', 'PERth', 'PSRth', 'BSloc' or 'Alpha’. This is the most important experiment set in E-Fi.
 
-### Contact
+## Contact
 
 For more information about the code or E-Fi, please don't hesitate to contact us by email. We'll be happy to assist you and answer any question you may have.
 
@@ -67,11 +67,11 @@ Electrical and Computer Engineering (EECE)
 Northeastern University
 li.zhengn@husky.neu.edu
 
-### Acknowledgements
+## Acknowledgements
 
 This work is supported in part by MathWorks under the Development-Collaboration Research Grant and by the U.S. Office of Naval Research under grant number N00014-16-1-2651. We would like to thank Mike McLernon, Ethem Sozer, Rameez Ahmed and Kunal Sankhe for their continued support and guidance on this project.
 
-### References
+## References
 
 [1] R. Subramanian, B. Drozdenko, E. Doyle, R. Ahmed, M. Leeser and K. R. Chowdhury, "High-Level System Design of IEEE 802.11b Standard-Compliant Link Layer for MATLAB-Based SDR," in IEEE Access, vol. 4, no. , pp. 1494-1509, 2016.
 Code:  https://github.com/80211bSDR. 
