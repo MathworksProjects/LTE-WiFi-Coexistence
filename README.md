@@ -35,7 +35,7 @@ The code is under */2_TABLE_MAC* directory and takes [1] as a baseline to model 
 The simulation set is under */3_EXPERIMENT_THROUGHPUT* directory and generates part of the TABLE_NEW_MAC and shows the results. Although not necessary for E-Fi performance evaluation, it serves as a good visualization of the table creation mechanism.
 
 - **ThroughputExp.m**: Main executable. This code is a particularization of **CreateTableMAC.m** (in /2_TABLE_MAC). The code evaluates the Throughput for a range of values of either *PSDU Length* or *alpha*, keeping the other parameter to a fixed value throughout the simulation.
-
+≤
 ### 4. Node Categorization Experiment
 The simulation set is under */4_EXPERIMENT_NODE_CATEGORY* and helps to understand how nodes are statistically categorized as Group Owners/Relays (GO), Wi-Fi Direct Clients (WDC) or Clients (CSZ and CNSZ) in the X-Y plane (spatial categorization based on the total number of available nodes in the area). 
 
@@ -49,7 +49,9 @@ The simulation set is under */5_EXPERIMENT_FEASIBLE_REGION* and shows how the qu
 ### 6. Global Experiment
 The simulation set is under */6_EXPERIMENT_GENERAL_STATS* and generates an extensive analysis on the performance of E-Fi in terms of PSR and Throughput as a function of the Number of Nodes (Nnodes), the PSR Threshold (PERth, defining the Safe Zone in E-Fi, or PSRth, being PSRth = 1 - PERth), the BS location (BSloc, distance between AP and BS) and Alpha (modifies the contention window in E-Fi). 
 
-- **GeneralStats.m**: Main executable. The parameter “exp” within the executable *GeneralStats.m* controls the parameter to evaluate in the experiment and can be set to: 'Nnodes', 'PERth', 'PSRth', 'BSloc' or 'Alpha’. This is the most important experiment set in E-Fi.
+- **GeneralStats.m**: Main executable. The parameter “exp” within the executable *GeneralStats.m* controls the parameter to evaluate in the experiment and can be set to: 'Nnodes', 'PERth', 'PSRth', 'BSloc' or 'Alpha’. This is the most important experiment set in E-Fi. Once the execution finalizes, it stores the results in *dataGeneralStats.m* and calls GeneralStatsPlot.m.
+- **GeneralStatsPlot.m**: Plots the results stored in the mat file *dataGeneralStats.mat*. It prints a timestamp from the previous execution as a reference.
+- **dataGeneralStats.mat**: Data generated after executing *GeneralStats.m*. It contains the relevant parameters to evaluate the performance and plot the results. It changes everytime the script *GeneralStats.m* is executed.
 
 ## Contact
 

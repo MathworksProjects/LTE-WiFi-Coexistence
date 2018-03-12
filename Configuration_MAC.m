@@ -28,11 +28,13 @@ conf.TablePath = '../0_DATA/';
 conf.TableName = 'TABLE_NEW_MAC_testing';
 conf.TableNameContention = 'TABLE_AV_TX_CONTENTION';
 
+conf.blackAndWhite = false;
+
 % Number of Iterations for the set of experiments. For stable and
 % meaningful results, the following values are recommended:
 % - CreateMacTable:            N/A
 % - Categorization_experiment: 200 iterations
 % - Throughput_experiment:     10000 iterations
 % - FeasibleRegion_experiment: N/A
-% - Global_experiment:         1000 iterations
+% - General_stats:             1000 iterations
 conf.Niter = 1000;
