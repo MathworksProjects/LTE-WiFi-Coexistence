@@ -14,12 +14,12 @@ y = SINRLIST;
 z = 100-PERLIST;
 
 figure
-scatter(x,y,10,z);
+scatter(x,y,10,z,'LineWidth',3.5);
 % set(gca,'CLim',[0 1]);
-xlabel('WiFi Received Power (dBm)')
-ylabel('WiFi SINR (dBm)')
+xlabel('WiFi Received Power (dBm)','FontSize',14);
+ylabel('WiFi SINR (dBm)','FontSize',14);
 % zlabel('PER')
-title('Packet Success Rate (%)')
+title('Packet Success Rate (%) of ABS1, MCS0','FontSize',14);
 
 xlim([-95, -25])
 ylim([-80, 60])
@@ -34,8 +34,8 @@ hold on
 % Plot limit lime for PSR threshold (tunnable)
 t = -95:-25;
 p = 9.8*ones(1, 71);
-plot(t,p)
-annotation('textarrow',[0.2 0.2],[0.7 0.85],'String','$PSR \ge 90\%$', 'Interpreter', 'latex')
+plot(t,p,'LineWidth',3);
+annotation('textarrow',[0.2 0.2],[0.7 0.85],'String','$PSR \ge 90\%$', 'Interpreter','latex','FontSize',16,'FontWeight','bold');
 
 colormap('gray')
 colorbar

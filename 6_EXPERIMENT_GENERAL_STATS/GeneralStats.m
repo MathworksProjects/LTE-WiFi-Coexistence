@@ -181,5 +181,5 @@ function []= GeneralStats_experiment(experiment, varList, alpha, conf)
     save('dataGeneralStats');
 
     % General plotting
-    plotGeneralStats;
+    GeneralStatsPlot;
 end
