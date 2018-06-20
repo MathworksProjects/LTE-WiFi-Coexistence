@@ -1,5 +1,5 @@
 ## Introduction - E-Fi overview
-This project contains the base code for the E-Fi proposal, an ongoing research from Northeastern University in the Genesys Lab in collaboration with the Mathworks inc. E-Fi allows Wi-Fi devices to coexist with LTE on the same band without requiring any changes on the LTE and Wi-Fi Physical Layer (unlike Listen-Before-Talk or CSAT) by extending its capabilities with the WiFi Direct Standard, which allows for a multi-hop communication, and scheduling its transmissions within Almost Blank Subframes (ABS) (an Inter-cell Interference coordination mechanism present in LTE Release 10). The E-Fi mechanism can be summarized into the following steps:
+This project contains the base code for the E-Fi proposal, an ongoing research from Northeastern University in the Genesys Lab in collaboration with the Mathworks inc. The formal paper is published in the IEEE Transactions of Mobile Computing (TMC) [1]. E-Fi allows Wi-Fi devices to coexist with LTE on the same band without requiring any changes on the LTE and Wi-Fi Physical Layer (unlike Listen-Before-Talk or CSAT) by extending its capabilities with the WiFi Direct Standard, which allows for a multi-hop communication, and scheduling its transmissions within Almost Blank Subframes (ABS) (an Inter-cell Interference coordination mechanism present in LTE Release 10). The E-Fi mechanism can be summarized into the following steps:
 
 1. Packet Success Rate (PSR) evaluation based on received power (Prx) and Signal-to-Noise Ratio (SINR).
 2. Node Pre-categorization (Relay, Wi-Fi Direct Client or Regular Client).
@@ -27,7 +27,7 @@ The code is under */1_TABLE_PHY* directory and uses the LTE and WLAN System tool
 - **LTE_WiFi_TXChRx.m**: This code evaluates the throughput, BER and Frame Detection Errors for LTE and Wi-Fi standard when coexisting using Almost Blank Subframes (ABS). Wi-Fi transmissions are always scheduled in ABS, in which LTE only transmits Control Signal. LTE Data is scheduled in non-ABS. The performance is evaluated only at a specified location (distance from the BS and AP).
 
 ### 2. Create MAC Table
-The code is under */2_TABLE_MAC* directory and takes [1] as a baseline to model the MAC procedure using a state machine. The input of the function is the PSR_TABLE (generated in */1_TABLE_PHY*) and it provides the probability of dropping a packet, the number of attempts to transmit a packet and the average time to transmit. The later, combined with the length of the PSDU gives us an estimation of the throughput. The output is defined as TABLE_MAC and is used in most of the further experiments to compute the Throughput accounting for retrasnmissions following the DCF (Distributed Cordination Function) present in the 802.11 standards family.
+The code is under */2_TABLE_MAC* directory and takes [2] as a baseline to model the MAC procedure using a state machine. The input of the function is the PSR_TABLE (generated in */1_TABLE_PHY*) and it provides the probability of dropping a packet, the number of attempts to transmit a packet and the average time to transmit. The later, combined with the length of the PSDU gives us an estimation of the throughput. The output is defined as TABLE_MAC and is used in most of the further experiments to compute the Throughput accounting for retrasnmissions following the DCF (Distributed Cordination Function) present in the 802.11 standards family.
 
 - **CreateTableMAC.m**: Main executable. The code runs for several values of *PSDU Length* and *alpha*. *Alpha* is a parameter that modifies the contention window in E-Fi to allow for an evenly distributed channel access between AP's and Relays (e.g. Alpha equals to 0 gives Relays more chances to access the channel than the AP to forward packets to Wi-Fi Direct Clients). *PSDU Length* represents the length in bits of the PSDU field in a packet. 
 
@@ -80,6 +80,8 @@ krc@ece.neu.edu
 This work is supported in part by MathWorks under the Development-Collaboration Research Grant and by the U.S. Office of Naval Research under grant number N00014-16-1-2651. We would like to thank Mike McLernon, Ethem Sozer, Rameez Ahmed and Kunal Sankhe for their continued support and guidance on this project.
 
 ## References
+
+[1] C. Bocanegra, T. E. Kennouche, Z. Li , L. Favalli, M. Di Felice and K. Chowdhury, "E-Fi: Evasive Wi-Fi Measures for Surviving LTE within 5GHz Unlicensed Band," in IEEE Transactions on Mobile Computing, Accepted June 18 2018.
 
 [1] R. Subramanian, B. Drozdenko, E. Doyle, R. Ahmed, M. Leeser and K. R. Chowdhury, "High-Level System Design of IEEE 802.11b Standard-Compliant Link Layer for MATLAB-Based SDR," in IEEE Access, vol. 4, no. , pp. 1494-1509, 2016.
 Code:  https://github.com/80211bSDR. 
